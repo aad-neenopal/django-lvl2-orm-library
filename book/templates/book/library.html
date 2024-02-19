@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+</head>
+<body>
+    <nav>
+        <a href="#">library app</a>
+        <a href="{% url 'index' %}">hmm</a>
+        <a href="{% url 'admin:index' %}">Admin</a>
+        <a href="{% url 'upload-book' %}">Upload books</a>
+    </nav>
+    <br>
+    {% block content %}
+        <div>
+            {% for book in shelf %}
+                <div>
+                    <img src="{{ book.picture.url }}" height="100", width="75">
+                </div>
+                <div>
+                    <h5>{{ book.name }}</h5>
+                    <p>{{ book.description }}</p>
+                    <p>{{ book.author }}</p>
+                    <center>
+                        <a href="update/{{book.id}}">update book</a>
+                        <a href="delete/{{book.id}}">delete book</a>
+                    </center>
+                </div>
+            {% endfor %}
+        </div>
+    {% endblock content %}
+</body>
+</html>
